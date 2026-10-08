@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>VoltBridge — Інструкція з експлуатації кабелю EcoFlow XT150</title>
+    <meta name="description" content="Офіційна онлайн-інструкція з підключення зовнішніх LiFePO4 акумуляторів 48В (51.2В) до зарядних станцій EcoFlow через кабель VoltBridge XT150.">
+    <meta name="theme-color" content="#090d16">
+    <style>
+        :root {
+            --bg-body: #090d16;
+            --bg-card: #111827;
+            --bg-card-hover: #162032;
+            --bg-surface: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --accent-red: #ef4444;
+            --accent-red-bg: rgba(239, 68, 68, 0.12);
+            --accent-red-border: rgba(239, 68, 68, 0.35);
+            --accent-amber: #f59e0b;
+            --accent-amber-bg: rgba(245, 158, 11, 0.12);
+            --accent-amber-border: rgba(245, 158, 11, 0.35);
+            --accent-green: #10b981;
+            --accent-green-bg: rgba(16, 185, 129, 0.12);
+            --accent-green-border: rgba(16, 185, 129, 0.35);
+            --accent-blue: #38bdf8;
+            --accent-blue-bg: rgba(56, 189, 248, 0.1);
+            --accent-blue-border: rgba(56, 189, 248, 0.3);
+            --border-subtle: #1e293b;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding: 0 16px 60px 16px;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        /* Header / Logo */
+        header {
+            text-align: center;
+            padding: 32px 16px 24px 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 24px;
+        }
+
+        .logo-wrap {
+            display: inline-block;
+            background: #ffffff;
+            padding: 10px 24px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo-img {
+            height: 48px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 18px;
+        }
+
+        .quick-nav a {
+            color: var(--accent-blue);
+            background: var(--accent-blue-bg);
+            border: 1px solid var(--accent-blue-border);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .quick-nav a:hover {
+            background: var(--accent-blue);
+            color: #000;
+        }
+
+        /* Cards & Sections */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .card-header h2 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .badge-blue { background: var(--accent-blue-bg); color: var(--accent-blue); border: 1px solid var(--accent-blue-border); }
+        .badge-red { background: var(--accent-red-bg); color: var(--accent-red); border: 1px solid var(--accent-red-border); }
+        .badge-amber { background: var(--accent-amber-bg); color: var(--accent-amber); border: 1px solid var(--accent-amber-border); }
+        .badge-green { background: var(--accent-green-bg); color: var(--accent-green); border: 1px solid var(--accent-green-border); }
+
+        /* Specs Grid */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .spec-item {
+            background: var(--bg-surface);
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .spec-val {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Highlights & Alerts */
+        .alert-red {
+            background: var(--accent-red-bg);
+            border: 1.5px solid var(--accent-red-border);
+            border-left: 5px solid var(--accent-red);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .alert-red h3 {
+            color: #fca5a5;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-amber {
+            background: var(--accent-amber-bg);
+            border: 1.5px solid var(--accent-amber-border);
+            border-left: 5px solid var(--accent-amber);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin: 14px 0;
+            color: #fde68a;
+            font-size: 13.5px;
+        }
+
+        .alert-blue {
+            background: var(--accent-blue-bg);
+            border: 1.5px solid var(--accent-blue-border);
+            border-left: 5px solid var(--accent-blue);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin: 14px 0;
+            color: #bae6fd;
+            font-size: 13.5px;
+        }
+
+        /* Compatibility Table */
+        .compat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 14px 0;
+        }
+
+        @media (max-width: 600px) {
+            .compat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .compat-box {
+            padding: 14px;
+            border-radius: var(--radius-md);
+        }
+
+        .compat-box.yes {
+            background: var(--accent-green-bg);
+            border: 1px solid var(--accent-green-border);
+        }
+
+        .compat-box.no {
+            background: var(--accent-red-bg);
+            border: 1px solid var(--accent-red-border);
+        }
+
+        .compat-box-title {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .compat-box.yes .compat-box-title { color: var(--accent-green); }
+        .compat-box.no .compat-box-title { color: var(--accent-red); }
+
+        .compat-list {
+            list-style: none;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .compat-list li {
+            margin-bottom: 6px;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .compat-list li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            font-weight: bold;
+        }
+
+        .compat-box.yes .compat-list li::before { color: var(--accent-green); }
+        .compat-box.no .compat-list li::before { color: var(--accent-red); }
+
+        /* Steps */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .step-card {
+            display: flex;
+            gap: 14px;
+            background: var(--bg-surface);
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: var(--accent-blue);
+            color: #000000;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 13px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-body {
+            flex: 1;
+            font-size: 13.5px;
+            color: var(--text-main);
+        }
+
+        .step-body b {
+            color: #ffffff;
+        }
+
+        .disconnect-box {
+            background: rgba(100, 116, 139, 0.15);
+            border: 1px dashed #64748b;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            margin-top: 14px;
+            font-size: 12.5px;
+            color: var(--text-muted);
+        }
+
+        .disconnect-box b {
+            color: #ffffff;
+        }
+
+        /* Lists */
+        .bullet-list {
+            padding-left: 20px;
+            font-size: 13.5px;
+            color: var(--text-main);
+            margin: 10px 0;
+        }
+
+        .bullet-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Legal / Disclaimer */
+        .legal-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 18px;
+            border-radius: var(--radius-md);
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--text-dim);
+        }
+
+        .legal-card b {
+            color: var(--text-muted);
+        }
+
+        /* Print / Share Buttons */
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 28px 0;
+        }
+
+        .btn {
+            background: var(--bg-surface);
+            color: #ffffff;
+            border: 1px solid var(--border-subtle);
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #334155;
+            border-color: #64748b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+                color: #000000;
+                padding: 0;
+            }
+            .card {
+                background: #ffffff;
+                border: 1px solid #ccc;
+                box-shadow: none;
+                color: #000000;
+                page-break-inside: avoid;
+            }
+            .quick-nav, .action-bar {
+                display: none;
+            }
+            .logo-wrap {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="logo-wrap">
+            <img src="data:image/png;base64,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" class="logo-img" alt="VoltBridge Logo">
+        </div>
+        <h1>ІНСТРУКЦІЯ З ЕКСПЛУАТАЦІЇ</h1>
+        <div class="subtitle">Кабель підключення зовнішнього акумулятора 48V (51.2V) до EcoFlow</div>
+        
+        <nav class="quick-nav">
+            <a href="#about">1. Призначення</a>
+            <a href="#compat">2. Сумісність</a>
+            <a href="#fuse">3. Запобіжник 50А</a>
+            <a href="#prep">4. Підготовка</a>
+            <a href="#connect">5. Підключення</a>
+            <a href="#drift">6. Калібрування</a>
+            <a href="#safety">7. Безпека</a>
+            <a href="#legal">8. Гарантія</a>
+        </nav>
+    </header>
+
+    <!-- SECTION 1 -->
+    <section class="card" id="about">
+        <div class="card-header">
+            <div class="badge-icon badge-blue">1</div>
+            <h2>Призначення та конструкція</h2>
+        </div>
+        <p style="font-size: 14.5px; color: var(--text-main);">
+            Кабель <b>VoltBridge</b> призначений для підключення сторонніх LiFePO4 акумуляторів 48 В (номінал 51.2 В: <b>Deye, Must, Pylontech, Dyness, збірок на елементах EVE</b> тощо) до порту Extra Battery (XT150) зарядних станцій EcoFlow для багаторазового збільшення автономності системи за доступною ціною.
+        </p>
+
+        <div class="specs-grid">
+            <div class="spec-item">
+                <div class="spec-label">Роз'єм станції</div>
+                <div class="spec-val">XT150 (Г-подібний кутовий)</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Роз'єм АКБ</div>
+                <div class="spec-val">Кільцеві клеми під болт M8</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Провід</div>
+                <div class="spec-val">8AWG (луджена мідь)</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Захист</div>
+                <div class="spec-val" style="color: var(--accent-red);">Вбудований авто-запобіжник 50А</div>
+            </div>
+            <div class="spec-item" style="grid-column: 1 / -1;">
+                <div class="spec-label">Ідентифікація</div>
+                <div class="spec-val">Вбудований чіп-резистор розпізнавання станцією</div>
+            </div>
+        </div>
+
+        <div class="alert-blue" style="margin-top: 16px;">
+            <b>⚡ Як працює система:</b>
+            <ul style="margin-top: 6px; padding-left: 18px; line-height: 1.5;">
+                <li>Станція сприймає зовнішню батарею як додатковий модуль ємності.</li>
+                <li>Під час роботи енергія споживається одночасно з обох джерел.</li>
+                <li>Заряджання станції від мережі 220В заряджає і зовнішню батарею через цей кабель.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="card" id="compat">
+        <div class="card-header">
+            <div class="badge-icon badge-green">2</div>
+            <h2>Сумісність обладнання</h2>
+        </div>
+
+        <div class="compat-grid">
+            <div class="compat-box yes">
+                <div class="compat-box-title">✓ Сумісні станції</div>
+                <ul class="compat-list">
+                    <li><b>EcoFlow Delta 2</b></li>
+                    <li><b>EcoFlow Delta 2 Max</b></li>
+                    <li><b>EcoFlow Delta 3 / Delta 3 Plus</b></li>
+                    <li><b>EcoFlow Wave 2 / Wave 3</b></li>
+                </ul>
+            </div>
+            <div class="compat-box no">
+                <div class="compat-box-title">✕ Не сумісні</div>
+                <ul class="compat-list">
+                    <li>EcoFlow Delta Pro / Pro 3 / Pro Ultra (інший роз'єм)</li>
+                    <li>EcoFlow River (усі моделі)</li>
+                    <li>Станції інших брендів (Bluetti, Jackery тощо)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert-amber">
+            <b>⚠️ Важливо для EcoFlow Delta Max / Delta 2 Max:</b> у моделях з двома портами розширення використовуйте <b>виключно ПЕРШИЙ слот (порт 1)</b>. З цим кабелем другий слот може бути несумісним або працювати некоректно.
+        </div>
+
+        <div style="margin-top: 14px;">
+            <p style="font-size: 13.5px; margin-bottom: 6px;"><b>Вимоги до акумулятора (підходять ТІЛЬКИ):</b></p>
+            <ul class="bullet-list">
+                <li>Тип <b>LiFePO4 (літій-залізо-фосфат)</b> 48V класу (номінал <b>51.2V, 16S</b>).</li>
+                <li>Обов'язкова наявність власної справної <b>BMS</b> (плати захисту).</li>
+                <li><i>Популярні сумісні бренди:</i> <b>Deye, Must, Pylontech, Dyness, збірки EVE</b> тощо.</li>
+            </ul>
+            <div class="alert-red" style="margin-top: 10px; padding: 12px 14px;">
+                <b>⛔ КАТЕГОРИЧНО ЗАБОРОНЕНО:</b> батареї 12V, 24V, 36V, автомобільні свинцево-кислотні, AGM, гелеві, Li-ion іншої напруги та будь-які батареї без власної BMS!
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="card" id="fuse" style="border-color: var(--accent-red-border);">
+        <div class="card-header">
+            <div class="badge-icon badge-red">3</div>
+            <h2 style="color: #fca5a5;">Вбудований запобіжник 50А — ваша безпека</h2>
+        </div>
+
+        <p style="font-size: 14px; margin-bottom: 12px;">
+            Батарея 48V LiFePO4 при короткому замиканні здатна видати <b>сотні ампер за долі секунди</b>. Вбудований запобіжник 50А — це єдиний надійний бар'єр, який розриває коло до того, як згорить плата станції чи спалахне провід.
+        </p>
+
+        <div class="alert-red">
+            <h3>⚠️ КРИТИЧНЕ ПРАВИЛО</h3>
+            <p><b>Категорично заборонено видаляти запобіжник, закорочувати контакти або ставити «жучок»!</b></p>
+            <p style="margin-top: 6px; font-size: 12.5px; color: #fecaca;">
+                <b>Якщо запобіжник перегорів:</b> не міняйте його одразу. Знеструмте всю систему, знайдіть та усуньте причину КЗ чи переполюсовки. Лише після усунення причини встановіть новий автомобільний плоский запобіжник <b>50А</b> (стандартний Maxi/Standard).
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section class="card" id="prep">
+        <div class="card-header">
+            <div class="badge-icon badge-amber">4</div>
+            <h2>Підготовка до першого підключення</h2>
+        </div>
+
+        <div class="alert-amber">
+            <b style="font-size: 14.5px;">⚡ ОБОВ'ЯЗКОВА ВИМОГА: ВИРІВНЮВАННЯ НАПРУГИ</b>
+            <p style="margin-top: 6px; font-size: 13.5px; color: #fffbeb;">
+                Напруга станції та зовнішньої батареї перед першим з'єднанням має бути <b>максимально однаковою (різниця не більше 5%)</b>.
+            </p>
+            <p style="margin-top: 6px; font-size: 12.5px; color: #fde68a;">
+                При великій різниці напруг високий струм перетікання миттєво спалить запобіжник або призведе до аварійного блокування станції.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section class="card" id="connect">
+        <div class="card-header">
+            <div class="badge-icon badge-blue">5</div>
+            <h2>Порядок підключення та роботи</h2>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <b>Переконайтеся, що ВСЕ ВИМКНЕНО:</b> станція вимкнена, АКБ вимкнена, мережа 220В та всі прилади від'єднані.
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <b>З'єднайте кабель:</b> прикрутіть клеми до АКБ (<b>червона «+»</b>, <b>чорна «&minus;»</b>) та надійно затягніть болти M8. Вставте штекер XT150 у <b>порт 1</b> станції до упору.
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <b>Увімкніть станцію EcoFlow.</b>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                    <b>Увімкніть зовнішню батарею</b> (вхідний автомат або кнопку BMS на АКБ).
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">5</div>
+                <div class="step-body">
+                    <b>Налаштування:</b> у додатку EcoFlow обов'язково перевірте та увімкніть опцію <b>«бортовий струм заряду»</b> (onboard charging current).
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">6</div>
+                <div class="step-body">
+                    <b>Запуск:</b> увімкніть станцію в розетку 220В для заряджання або підключіть навантаження.
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">7</div>
+                <div class="step-body">
+                    <b>Контроль:</b> перші 15–30 хв роботи проконтролюйте температуру контактів і кабелю (вони не повинні помітно нагріватися).
+                </div>
+            </div>
+        </div>
+
+        <div class="disconnect-box">
+            <b>🔌 Порядок безпечного від'єднання:</b><br>
+            1. Відключити 220В та зняти все навантаження &rarr;<br>
+            2. Вимкнути станцію EcoFlow &rarr;<br>
+            3. Вимкнути зовнішню АКБ &rarr;<br>
+            4. Вийняти штекер XT150 зі станції &rarr;<br>
+            5. Відкрутити клеми від батареї (спочатку чорну &minus;, потім червону +).<br>
+            <span style="color: var(--accent-red); font-weight: bold;">⛔ Категорично заборонено від'єднувати кабель під навантаженням!</span>
+        </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section class="card" id="drift">
+        <div class="card-header">
+            <div class="badge-icon badge-amber">6</div>
+            <h2>Розходження заряду та калібрування</h2>
+        </div>
+
+        <p style="font-size: 14px; margin-bottom: 10px;">
+            Значна розбіжність у швидкості розряджання станції та зовнішньої батареї — <b>це нормальна технічна особливість системи</b>.
+        </p>
+        
+        <ul class="bullet-list">
+            <li>Між станцією та сторонньою батареєю немає цифрової шини зв'язку (CAN/RS485).</li>
+            <li>Кожна BMS веде розрахунок відсотків заряду автономно.</li>
+            <li>Струм розряджання залежить від внутрішнього опору та навантаження.</li>
+        </ul>
+
+        <div class="alert-blue" style="margin-top: 12px;">
+            <b>🔄 Як синхронізувати (калібрувати) систему:</b><br>
+            Приблизно раз на місяць (або при сильному розходженні) зарядіть з'єднану систему разом до 100% від мережі 220В або розрядіть максимально глибоко разом і повністю зарядіть.
+        </div>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section class="card" id="safety">
+        <div class="card-header">
+            <div class="badge-icon badge-red">7</div>
+            <h2>Правила техніки безпеки</h2>
+        </div>
+
+        <ul class="bullet-list" style="font-size: 13.5px;">
+            <li>Використовуйте кабель виключно з дозволеним обладнанням 48V (51.2V LiFePO4).</li>
+            <li><b>Ніколи не замикайте клеми кабелю між собою</b> і не торкайтеся ними металевих поверхонь.</li>
+            <li>Не працюйте з клемами в металевих прикрасах (годинники, каблучки, браслети).</li>
+            <li>Використовуйте ізольований інструмент. Не залишайте систему без нагляду на перших циклах.</li>
+            <li>Розміщуйте обладнання на негорючій поверхні у сухому провітрюваному приміщенні.</li>
+            <li>Не затискайте і не перегинайте провід. Не допускайте потрапляння вологи.</li>
+            <li>При появі запаху гару, оплавленні або перегріві — <b>негайно знеструмте систему</b>.</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 8 -->
+    <section class="card" id="legal" style="background: rgba(15, 23, 42, 0.4);">
+        <div class="card-header">
+            <div class="badge-icon" style="background: #334155; color: #94a3b8;">8</div>
+            <h2 style="color: #94a3b8;">Відповідальність та гарантія</h2>
+        </div>
+
+        <div class="legal-card">
+            <p>&bull; Кабель VoltBridge не є продукцією компанії EcoFlow. Торговельні марки EcoFlow, Delta, Wave згадані виключно для вказівки сумісності.</p>
+            <p style="margin-top: 6px;">&bull; Підключення сторонніх акумуляторів здійснюється <b>користувачем на власний розсуд та ризик</b>.</p>
+            <p style="margin-top: 6px;">&bull; Продавець не несе відповідальності за пошкодження станції, АКБ, майна, помилки полярності при підключенні, налаштування сторонніх BMS, розходження рівнів заряду або можливу втрату заводської гарантії станції.</p>
+            <p style="margin-top: 6px;">&bull; Гарантія поширюється <b>виключно на виробничий брак самого кабелю</b>. Механічні пошкодження, оплавлення від перевантаження/КЗ, порушення полярності та заміна запобіжника на невідповідний анулюють гарантію.</p>
+            <p style="margin-top: 10px; font-weight: 700; color: #cbd5e1;">Факт використання кабелю засвідчує повну згоду користувача з усіма умовами цієї інструкції.</p>
+        </div>
+    </section>
+
+    <div class="action-bar">
+        <button class="btn" onclick="window.print()">🖨️ Роздрукувати інструкцію</button>
+        <button class="btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Посилання скопійовано!');">📋 Скопіювати посилання</button>
+    </div>
+
+    <footer>
+        &copy; VoltBridge. Усі права захищено. Спеціалізовані рішення автономного живлення.
+    </footer>
+
+</div>
+
+</body>
+</html>
